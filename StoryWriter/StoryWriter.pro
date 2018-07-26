@@ -9,34 +9,56 @@ QT       += core gui widgets
 TARGET = StoryWriter
 TEMPLATE = app
 
-# The following define makes your compiler emit warnings if you use
-# any feature of Qt which has been marked as deprecated (the exact warnings
-# depend on your compiler). Please consult the documentation of the
-# deprecated API in order to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
 
-# You can also make your code fail to compile if you use deprecated APIs.
-# In order to do so, uncomment the following line.
-# You can also select to disable deprecated APIs only up to a certain version of Qt.
-#DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-CONFIG += c++11
+CONFIG += c++14
 
 SOURCES += \
-        main.cpp \
-        mainwindow.cpp
+    Converters.cpp \
+    main.cpp \
+    MathOperationDataModel.cpp \
+    ModuloModel.cpp \
+    NumberDisplayDataModel.cpp \
+    NumberSourceDataModel.cpp
 
 HEADERS += \
-        mainwindow.h
+    AdditionModel.hpp \
+    Converters.hpp \
+    DecimalData.hpp \
+    DivisionModel.hpp \
+    IntegerData.hpp \
+    MathOperationDataModel.hpp \
+    ModuloModel.hpp \
+    MultiplicationModel.hpp \
+    NumberDisplayDataModel.hpp \
+    NumberSourceDataModel.hpp \
+    SubtractionModel.hpp \
 
-FORMS += \
-        mainwindow.ui
-
-# Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
 
 
-LIBS += -L../libnodes -lnodes
+
+#LIBS += -L../libnodes -lnodes
+#INCLUDEPATH += $$PWD/../libnodes/include
+
+
+#LIBS += -L/home/nexus/Projects/qt/build-Project-Desktop_Qt_5_11_1_GCC_64bit-Debug/libnodes/ -lnodes
+#INCLUDEPATH += /home/nexus/Projects/qt/StoryWriter/libnodes/include/
+#PRE_TARGETDEPS += /home/nexus/Projects/qt/build-Project-Desktop_Qt_5_11_1_GCC_64bit-Debug/libnodes/libnodes.a
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../libnodes/release/ -lnodes
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../libnodes/debug/ -lnodes
+else:unix: LIBS += -L$$OUT_PWD/../libnodes/ -lnodes
+
 INCLUDEPATH += $$PWD/../libnodes/include
+DEPENDPATH += $$PWD/../libnodes/include
+
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../libnodes/libnodes.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../libnodes/libnodes.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../libnodes/nodes.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../libnodes/nodes.lib
+else:unix: PRE_TARGETDEPS += $$OUT_PWD/../libnodes/libnodes.a
+
+#LIBS += -L/home/nexus/Projects/qt/StoryWriter1/libnodes/build/ -lnodes
+#INCLUDEPATH += /home/nexus/Projects/qt/StoryWriter1/libnodes/include/
+#PRE_TARGETDEPS += /home/nexus/Projects/qt/StoryWriter1/libnodes/build/libnodes.a

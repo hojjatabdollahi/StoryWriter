@@ -4,11 +4,15 @@
 #
 #-------------------------------------------------
 
-QT       += gui widgets opengl
+QT       += gui core widgets opengl
 
+CONFIG += c++14
 TARGET = nodes
 TEMPLATE = lib
 CONFIG += staticlib
+#CONFIG += dll
+
+
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
@@ -50,9 +54,41 @@ HEADERS += \
     src/NodeConnectionInteraction.hpp \
     src/NodePainter.hpp \
     src/Properties.hpp \
-    src/StyleCollection.hpp
-unix {
-    target.path = /usr/lib
-    INSTALLS += target
-}
+    src/StyleCollection.hpp \
+    include/nodes/internal/Compiler.hpp \
+    include/nodes/internal/Connection.hpp \
+    include/nodes/internal/ConnectionGeometry.hpp \
+    include/nodes/internal/ConnectionGraphicsObject.hpp \
+    include/nodes/internal/ConnectionState.hpp \
+    include/nodes/internal/ConnectionStyle.hpp \
+    include/nodes/internal/DataModelRegistry.hpp \
+    include/nodes/internal/Export.hpp \
+    include/nodes/internal/FlowScene.hpp \
+    include/nodes/internal/FlowView.hpp \
+    include/nodes/internal/FlowViewStyle.hpp \
+    include/nodes/internal/memory.hpp \
+    include/nodes/internal/Node.hpp \
+    include/nodes/internal/NodeData.hpp \
+    include/nodes/internal/NodeDataModel.hpp \
+    include/nodes/internal/NodeGeometry.hpp \
+    include/nodes/internal/NodeGraphicsObject.hpp \
+    include/nodes/internal/NodePainterDelegate.hpp \
+    include/nodes/internal/NodeState.hpp \
+    include/nodes/internal/NodeStyle.hpp \
+    include/nodes/internal/OperatingSystem.hpp \
+    include/nodes/internal/PortType.hpp \
+    include/nodes/internal/QStringStdHash.hpp \
+    include/nodes/internal/QUuidStdHash.hpp \
+    include/nodes/internal/Serializable.hpp \
+    include/nodes/internal/Style.hpp \
+    include/nodes/internal/TypeConverter.hpp
+
+
 INCLUDEPATH += $$PWD/include/nodes/internal/
+
+DISTFILES += \
+    resources/DefaultStyle.json \
+    resources/convert.png
+
+RESOURCES += \
+    resources/resources.qrc

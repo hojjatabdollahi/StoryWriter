@@ -56,7 +56,13 @@ save() const
   obj["x"] = _nodeGraphicsObject->pos().x();
   obj["y"] = _nodeGraphicsObject->pos().y();
   nodeJson["position"] = obj;
+  QJsonObject obj2;
+  QVariant width = _nodeGraphicsObject->node().nodeGeometry().width();
+  QVariant height = _nodeGraphicsObject->node().nodeGeometry().height();
 
+  obj2.insert("w", QJsonValue::fromVariant(width));
+  obj2.insert("h", QJsonValue::fromVariant(height));
+  nodeJson["size"] = obj2;
   return nodeJson;
 }
 
@@ -71,8 +77,30 @@ restore(QJsonObject const& json)
   QPointF     point(positionJson["x"].toDouble(),
                     positionJson["y"].toDouble());
   _nodeGraphicsObject->setPos(point);
+  QJsonObject sizeJson = json["size"].toObject();
+  unsigned int width = sizeJson.value("w").toVariant().toUInt();
+  unsigned int height = sizeJson.value("h").toVariant().toUInt();
 
+  _nodeGraphicsObject->node().nodeGeometry().setWidth(width);
+  _nodeGraphicsObject->node().nodeGeometry().setHeight(height);
   _nodeDataModel->restore(json["model"].toObject());
+
+
+
+//  if (auto w = _node.nodeDataModel()->embeddedWidget())
+//  {
+//    prepareGeometryChange();
+
+//    auto oldSize = w->size();
+
+//    oldSize += QSize(diff.x(), diff.y());
+
+//    w->setFixedSize(oldSize);
+
+//    _proxyWidget->setMinimumSize(oldSize);
+//    _proxyWidget->setMaximumSize(oldSize);
+//    _proxyWidget->setPos(geom.widgetPosition());
+
 }
 
 
