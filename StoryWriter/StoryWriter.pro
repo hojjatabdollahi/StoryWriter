@@ -22,7 +22,10 @@ SOURCES += \
     NumberDisplayDataModel.cpp \
     NumberSourceDataModel.cpp \
     TextEdit/highlighter.cpp \
-    TextEdit/textedit.cpp
+    TextEdit/textedit.cpp \
+    Panel/panel.cpp \
+    Nodes/condition.cpp \
+    Tools/convertor.cpp
 
 HEADERS += \
     AdditionModel.hpp \
@@ -37,7 +40,10 @@ HEADERS += \
     NumberSourceDataModel.hpp \
     SubtractionModel.hpp \
     TextEdit/highlighter.h \
-    TextEdit/textedit.h
+    TextEdit/textedit.h \
+    Panel/panel.h \
+    Nodes/condition.h \
+    Tools/convertor.h
 
 
 

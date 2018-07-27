@@ -19,6 +19,7 @@
 #include "DivisionModel.hpp"
 #include "ModuloModel.hpp"
 #include "Converters.hpp"
+#include "Panel/panel.h"
 
 
 using QtNodes::DataModelRegistry;
@@ -115,9 +116,10 @@ main(int argc, char *argv[])
 
 
   QHBoxLayout *hl = new QHBoxLayout;
-  QTextEdit block;
-  block.setMinimumWidth(100);
-  block.setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Expanding);
+//  TextEdit block;
+//  block.setMinimumWidth(100);
+//  block.setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Expanding);
+  Panel block;
   hl->addWidget(&block);
 
   auto scene = new FlowScene(registerDataModels(), mainWidget);
@@ -129,9 +131,7 @@ main(int argc, char *argv[])
   l->setSpacing(0);
 
 
-
-
-
+//  QObject::connect(scene, &FlowScene::nodeDoubleClicked, &block, &TextEdit::nodeSelected);
 
   QObject::connect(saveAction, &QAction::triggered,
                    scene, &FlowScene::save);

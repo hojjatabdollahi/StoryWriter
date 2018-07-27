@@ -6,7 +6,8 @@
 #include <QTextEdit>
 #include <QAbstractItemModel>
 #include "highlighter.h"
-
+#include <QDebug>
+#include <nodes/Node>
 class TextEdit : public QTextEdit
 {Q_OBJECT
 
@@ -16,14 +17,15 @@ public:
 
     void setCompleter(QCompleter *c);
     QCompleter *completer() const;
-void setupEditor();
+    void setupEditor();
 protected:
     void keyPressEvent(QKeyEvent *e) override;
     void focusInEvent(QFocusEvent *e) override;
 
 private slots:
     void insertCompletion(const QString &completion);
-
+public slots:
+    void nodeSelected(QtNodes::Node &n);
 private:
     QString textUnderCursor() const;
 

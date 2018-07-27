@@ -10,12 +10,16 @@
 #include <QAbstractItemModel>
 #include <QScrollBar>
 #include <QStringListModel>
+
+#include <nodes/NodeDataModel>
 TextEdit::TextEdit(QWidget *parent)
     : QTextEdit(parent), c(nullptr)
 {
 //    setPlainText(tr("This TextEdit provides autocompletions for words that have more than"
 //                    " 3 characters. You can trigger autocompletion using ") +
 //                 QKeySequence("Ctrl+E").toString(QKeySequence::NativeText));
+//    myFrame->setStyleSheet();
+    setStyleSheet("QTextEdit {background-color: Cornsilk; border: 1px solid black; border-radius: 5px;}");
     setupEditor();
 }
 
@@ -76,9 +80,9 @@ void TextEdit::setupEditor()
     this->setCompleter(c);
 
     QFont font;
-    font.setFamily("Courier");
+    font.setFamily("Segoe UI");
     font.setFixedPitch(true);
-    font.setPointSize(15);
+    font.setPointSize(10);
 
     //    completingTextEdit = new QTextEdit;
     this->setFont(font);
@@ -187,4 +191,8 @@ void TextEdit::keyPressEvent(QKeyEvent *e)
     cr.setWidth(c->popup()->sizeHintForColumn(0)
                 + c->popup()->verticalScrollBar()->sizeHint().width());
     c->complete(cr); // popup it up!
+}
+
+void TextEdit::nodeSelected(QtNodes::Node &n){
+    qDebug() << "node selected: " << n.nodeDataModel()->save() ;
 }
