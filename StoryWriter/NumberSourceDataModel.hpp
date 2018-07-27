@@ -6,7 +6,7 @@
 #include <nodes/NodeDataModel>
 
 #include <iostream>
-
+#include "TextEdit/textedit.h"
 class DecimalData;
 
 using QtNodes::PortType;
@@ -67,16 +67,16 @@ public:
   { }
 
   QWidget *
-  embeddedWidget() override { return _lineEdit; }
+  embeddedWidget() override { return _editor; }
 
 private slots:
 
   void
-  onTextEdited(QString const &string);
+  onTextEdited();
 
 private:
 
   std::shared_ptr<DecimalData> _number;
 
-  QLineEdit * _lineEdit;
+  TextEdit * _editor;
 };

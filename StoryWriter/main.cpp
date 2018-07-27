@@ -6,6 +6,7 @@
 
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QMenuBar>
 
 #include <nodes/DataModelRegistry>
@@ -91,19 +92,46 @@ main(int argc, char *argv[])
 
   setStyle();
 
-  QWidget mainWidget;
+  QWidget *mainWidget = new QWidget;
 
   auto menuBar    = new QMenuBar();
   auto saveAction = menuBar->addAction("Save..");
   auto loadAction = menuBar->addAction("Load..");
 
-  QVBoxLayout *l = new QVBoxLayout(&mainWidget);
+
+
+
+
+
+
+
+
+  QVBoxLayout *l = new QVBoxLayout;//(&mainWidget);
 
   l->addWidget(menuBar);
-  auto scene = new FlowScene(registerDataModels(), &mainWidget);
-  l->addWidget(new FlowView(scene));
+
+
+
+
+
+  QHBoxLayout *hl = new QHBoxLayout;
+  QTextEdit block;
+  block.setMinimumWidth(100);
+  block.setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Expanding);
+  hl->addWidget(&block);
+
+  auto scene = new FlowScene(registerDataModels(), mainWidget);
+  hl->addWidget(new FlowView(scene));
+
+//  l->addWidget(new FlowView(scene));
+//  l->addLayout(hl);
   l->setContentsMargins(0, 0, 0, 0);
   l->setSpacing(0);
+
+
+
+
+
 
   QObject::connect(saveAction, &QAction::triggered,
                    scene, &FlowScene::save);
@@ -111,9 +139,16 @@ main(int argc, char *argv[])
   QObject::connect(loadAction, &QAction::triggered,
                    scene, &FlowScene::load);
 
-  mainWidget.setWindowTitle("Dataflow tools: simplest calculator");
-  mainWidget.resize(800, 600);
-  mainWidget.showNormal();
+  mainWidget->setWindowTitle("Dataflow tools: simplest calculator");
+  mainWidget->resize(800, 600);
+  mainWidget->showNormal();
+
+  QVBoxLayout *mainLayout = new QVBoxLayout;
+  mainLayout->setContentsMargins(0, 0, 0, 0);
+  mainLayout->setSpacing(0);
+mainLayout->addLayout(l);
+mainLayout->addLayout(hl);
+  mainWidget->setLayout(mainLayout);
 
   return app.exec();
 }

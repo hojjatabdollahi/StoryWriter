@@ -11,7 +11,7 @@ TEMPLATE = app
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
-
+#INCLUDEPATH += $$PWD/TextEdit
 CONFIG += c++14
 
 SOURCES += \
@@ -20,7 +20,9 @@ SOURCES += \
     MathOperationDataModel.cpp \
     ModuloModel.cpp \
     NumberDisplayDataModel.cpp \
-    NumberSourceDataModel.cpp
+    NumberSourceDataModel.cpp \
+    TextEdit/highlighter.cpp \
+    TextEdit/textedit.cpp
 
 HEADERS += \
     AdditionModel.hpp \
@@ -34,6 +36,8 @@ HEADERS += \
     NumberDisplayDataModel.hpp \
     NumberSourceDataModel.hpp \
     SubtractionModel.hpp \
+    TextEdit/highlighter.h \
+    TextEdit/textedit.h
 
 
 
@@ -53,10 +57,10 @@ else:unix: LIBS += -L$$OUT_PWD/../libnodes/ -lnodes
 INCLUDEPATH += $$PWD/../libnodes/include
 DEPENDPATH += $$PWD/../libnodes/include
 
-win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../libnodes/libnodes.a
-else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../libnodes/libnodes.a
-else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../libnodes/nodes.lib
-else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../libnodes/nodes.lib
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../libnodes/release/libnodes.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../libnodes/debug/libnodes.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../libnodes/release/nodes.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../libnodes/debug/nodes.lib
 else:unix: PRE_TARGETDEPS += $$OUT_PWD/../libnodes/libnodes.a
 
 #LIBS += -L/home/nexus/Projects/qt/StoryWriter1/libnodes/build/ -lnodes
