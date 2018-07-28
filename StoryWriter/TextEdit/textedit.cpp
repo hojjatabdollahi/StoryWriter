@@ -193,7 +193,3 @@ void TextEdit::keyPressEvent(QKeyEvent *e)
     c->complete(cr); // popup it up!
 }
 
-void TextEdit::nodeSelected(QtNodes::Node &n){
-    qDebug() << "node selected: " << n.nodeDataModel()->save() ;
-//    qDebug() << "Number of children: " << n.nodeDataModel()->
-}

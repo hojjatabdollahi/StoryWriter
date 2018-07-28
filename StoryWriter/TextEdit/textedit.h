@@ -24,8 +24,7 @@ protected:
 
 private slots:
     void insertCompletion(const QString &completion);
-public slots:
-    void nodeSelected(QtNodes::Node &n);
+
 private:
     QString textUnderCursor() const;
 

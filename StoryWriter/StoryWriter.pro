@@ -26,7 +26,8 @@ SOURCES += \
     Panel/panel.cpp \
     Tools/convertor.cpp \
     Nodes/widgets/conditionwidget.cpp \
-    Nodes/ConditionDataModel.cpp
+    Nodes/ConditionDataModel.cpp \
+    Nodes/userpromptdatamodel.cpp
 
 HEADERS += \
     AdditionModel.hpp \
@@ -45,7 +46,9 @@ HEADERS += \
     Panel/panel.h \
     Tools/convertor.h \
     Nodes/widgets/conditionwidget.h \
-    Nodes/ConditionDataModel.h
+    Nodes/ConditionDataModel.h \
+    Nodes/chatdata.h \
+    Nodes/userpromptdatamodel.h
 
 
 

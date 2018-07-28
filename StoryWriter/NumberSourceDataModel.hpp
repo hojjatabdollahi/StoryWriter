@@ -2,11 +2,11 @@
 
 #include <QtCore/QObject>
 #include <QtWidgets/QLineEdit>
-
 #include <nodes/NodeDataModel>
-
 #include <iostream>
+
 #include "TextEdit/textedit.h"
+
 class DecimalData;
 
 using QtNodes::PortType;
