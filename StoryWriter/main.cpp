@@ -20,7 +20,7 @@
 #include "ModuloModel.hpp"
 #include "Converters.hpp"
 #include "Panel/panel.h"
-
+#include "Nodes/ConditionDataModel.h"
 
 using QtNodes::DataModelRegistry;
 using QtNodes::FlowScene;
@@ -44,6 +44,7 @@ registerDataModels()
   ret->registerModel<MultiplicationModel>("Operators");
 
   ret->registerModel<DivisionModel>("Operators");
+  ret->registerModel<ConditionDataModel>("Intermediate");
 
   ret->registerModel<ModuloModel>("Operators");
 
@@ -116,7 +117,7 @@ main(int argc, char *argv[])
 
 
   QHBoxLayout *hl = new QHBoxLayout;
-//  TextEdit block;
+  TextEdit block2;
 //  block.setMinimumWidth(100);
 //  block.setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Expanding);
   Panel block;
@@ -131,7 +132,7 @@ main(int argc, char *argv[])
   l->setSpacing(0);
 
 
-//  QObject::connect(scene, &FlowScene::nodeDoubleClicked, &block, &TextEdit::nodeSelected);
+  QObject::connect(scene, &FlowScene::nodeDoubleClicked, &block2, &TextEdit::nodeSelected);
 
   QObject::connect(saveAction, &QAction::triggered,
                    scene, &FlowScene::save);

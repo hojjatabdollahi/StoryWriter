@@ -24,8 +24,9 @@ SOURCES += \
     TextEdit/highlighter.cpp \
     TextEdit/textedit.cpp \
     Panel/panel.cpp \
-    Nodes/condition.cpp \
-    Tools/convertor.cpp
+    Tools/convertor.cpp \
+    Nodes/widgets/conditionwidget.cpp \
+    Nodes/ConditionDataModel.cpp
 
 HEADERS += \
     AdditionModel.hpp \
@@ -42,8 +43,9 @@ HEADERS += \
     TextEdit/highlighter.h \
     TextEdit/textedit.h \
     Panel/panel.h \
-    Nodes/condition.h \
-    Tools/convertor.h
+    Tools/convertor.h \
+    Nodes/widgets/conditionwidget.h \
+    Nodes/ConditionDataModel.h
 
 
 

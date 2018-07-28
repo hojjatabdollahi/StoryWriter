@@ -195,4 +195,5 @@ void TextEdit::keyPressEvent(QKeyEvent *e)
 
 void TextEdit::nodeSelected(QtNodes::Node &n){
     qDebug() << "node selected: " << n.nodeDataModel()->save() ;
+//    qDebug() << "Number of children: " << n.nodeDataModel()->
 }
